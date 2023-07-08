@@ -9,13 +9,35 @@
     tools:context=".fragments.NewNoteFragment">
 
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabGoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
+        android:src="@drawable/ic_done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
@@ -41,28 +63,28 @@
                     android:id="@+id/editNoteTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/transparent"
+                    android:autofillHints=""
+                    android:background="@color/backgroundWhite"
                     android:hint="Title"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="@color/hintColor"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:autofillHints=""
-                    android:inputType="text"/>
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/editNoteBody"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/transparent"
-                    android:hint="Type something..."
+                    android:layout_marginTop="16dp"
+                    android:autofillHints=""
+                    android:background="@color/backgroundWhite"
                     android:gravity="start|top"
+                    android:hint="Type something..."
                     android:inputType="textMultiLine"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:layout_marginTop="16dp"
-                    android:textSize="18sp"
-                    android:autofillHints="" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
