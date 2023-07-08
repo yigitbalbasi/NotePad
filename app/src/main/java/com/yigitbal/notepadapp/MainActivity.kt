@@ -3,6 +3,7 @@ package com.yigitbal.notepadapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.yigitbal.notepadapp.databinding.ActivityMainBinding
 
 
