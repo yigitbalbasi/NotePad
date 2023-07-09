@@ -65,6 +65,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:+'
     implementation 'androidx.core:core-ktx:+'
     implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.core:core-ktx:+'
     def lifecycle_version = "2.6.1"
     def room_version = "2.5.2"
     def nav_version = "2.6.0"
