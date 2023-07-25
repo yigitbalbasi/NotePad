@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Note(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val noteTitle: String,
-    val noteBody: String
+    var id: Int? = null,
+    var noteTitle: String,
+    var noteBody: String
 ) : Parcelable

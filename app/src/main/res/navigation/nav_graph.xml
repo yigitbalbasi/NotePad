@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.yigitbal.notepadapp.fragments.HomeFragment"
-        android:label="Note"
+        android:label="Notes"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_updateNoteFragment"

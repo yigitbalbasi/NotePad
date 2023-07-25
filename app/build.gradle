@@ -2,18 +2,20 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
+    id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
     namespace 'com.yigitbal.notepadapp'
-    compileSdk 33
+    compileSdk 34
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.yigitbal.notepadapp"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -37,11 +39,11 @@ android {
 
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = '1.8'
     }
 
 
@@ -60,53 +62,56 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
-    def lifecycle_version = "2.6.1"
-    def room_version = "2.5.2"
-    def nav_version = "2.6.0"
 
 
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.10.1'
-    implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-    implementation 'androidx.activity:activity-compose:1.7.2'
-    implementation platform('androidx.compose:compose-bom:2022.10.00')
-    implementation 'androidx.compose.ui:ui'
-    implementation 'androidx.compose.ui:ui-graphics'
-    implementation 'androidx.compose.ui:ui-tooling-preview'
-    implementation 'androidx.compose.material3:material3'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
-    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-    debugImplementation 'androidx.compose.ui:ui-tooling'
-    debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+    // Architectural Components
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
 
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    // Room
+    implementation "androidx.room:room-runtime:2.5.2"
+    kapt "androidx.room:room-compiler:2.5.2"
 
-    implementation "androidx.room:room-ktx:$room_version"
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.5.2"
 
+    // Navigation Components
+    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.6.0"
 
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    // Espresso
+    def androidx_test_espresso = "3.3.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso"
 
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    // Mockk.io
+    def mockk_version = "1.9.3"
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
+
+    // androidx.test
+    def androidx_test = "1.1.2"
+    androidTestImplementation "androidx.test:runner:$androidx_test"
+    androidTestImplementation "androidx.test:core:$androidx_test"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+
+    // androidx.fragment
+    debugImplementation "androidx.fragment:fragment-testing:1.6.0"
+    implementation "androidx.fragment:fragment-ktx:1.6.0"
 
 
 

@@ -1,29 +1,30 @@
 package com.yigitbal.notepadapp.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.AsyncListUtil
+
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.yigitbal.notepadapp.databinding.NoteLayoutAdapterBinding
+import com.yigitbal.notepadapp.fragments.HomeFragmentDirections
 import com.yigitbal.notepadapp.model.Note
+import java.util.Random
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
-    private var binding: NoteLayoutAdapterBinding? = null
-
-    class NoteViewHolder(
-        itemBinding: NoteLayoutAdapterBinding
-    ) :
+    class NoteViewHolder(val itemBinding: NoteLayoutAdapterBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
+
 
     private val differCallback =
         object : DiffUtil.ItemCallback<Note>() {
-
-
             override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.id == newItem.id &&
+                        oldItem.noteBody == newItem.noteBody &&
+                        oldItem.noteTitle == newItem.noteTitle
             }
 
             override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
@@ -34,33 +35,38 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     val differ = AsyncListDiffer(this, differCallback)
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        binding = NoteLayoutAdapterBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+        return NoteViewHolder(
+            NoteLayoutAdapterBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
         )
-        return NoteViewHolder(binding!!)
 
-
-    }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val currentNote = differ.currentList[position]
 
+        holder.itemBinding.textviewNoteTitle.text = currentNote.noteTitle
+        holder.itemBinding.textviewNoteBody.text = currentNote.noteBody
+        val random = Random()
+        val color =
+            Color.argb(
+                255, random.nextInt(256),
+                random.nextInt(256), random.nextInt(256)
+            )
+        holder.itemBinding.ibColor.setBackgroundColor(color)
 
-        holder.itemView.apply {
+        holder.itemView.setOnClickListener { view ->
 
-            binding?.textviewNoteTitle?.text = currentNote.noteTitle
-            binding?.textviewNoteBody?.text = currentNote.noteBody
-
+            val direction = HomeFragmentDirections
+                .actionHomeFragmentToUpdateNoteFragment(currentNote)
+            view.findNavController().navigate(direction)
         }
     }
 
+    override fun getItemCount(): Int {
+        return differ.currentList.size
+    }
 
 }

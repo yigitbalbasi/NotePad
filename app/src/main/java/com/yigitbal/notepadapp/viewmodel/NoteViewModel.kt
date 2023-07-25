@@ -7,24 +7,32 @@ import com.yigitbal.notepadapp.model.Note
 import com.yigitbal.notepadapp.repository.NoteRepository
 import kotlinx.coroutines.launch
 
-class NoteViewModel(
 
+class NoteViewModel(
     app: Application,
-    private val noteRepository: NoteRepository
+    private val noteRepository: NoteRepository.NoteRepository
 ) : AndroidViewModel(app) {
 
-    fun addNote(note: Note) = viewModelScope.launch {
-        noteRepository.addNote(note)
-    }
 
-    fun updateNote(note: Note) = viewModelScope.launch {
-        noteRepository.updateNote(note)
-    }
+    fun addNote(note: Note) =
+        viewModelScope.launch {
+            noteRepository.addNote(note)
+        }
 
-    fun deleteNote(note: Note) = viewModelScope.launch {
-        noteRepository.deleteNote(note)
-    }
+    fun deleteNote(note: Note) =
+        viewModelScope.launch {
+            noteRepository.deleteNote(note)
+        }
 
-    fun getAllNote()= noteRepository.getAllNotes()
-    }
+    fun updateNote(note: Note) =
+        viewModelScope.launch {
+            noteRepository.updateNote(note)
+        }
+
+    fun getAllNote() = noteRepository.getAllNotes()
+
+    fun searchNote(query: String?) =
+        noteRepository.searchNote(query)
+
+}
 
